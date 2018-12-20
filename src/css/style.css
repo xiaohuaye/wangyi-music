@@ -27,9 +27,11 @@ input{font: inherit;outline: none;background: #dddddd;}
   padding: 10px;
   border-bottom: 1px solid #DEE1E6;
 }
+.songList-wrapper{
+  flex-grow: 1;
+}
 .songList{
   text-align: left;
-  flex-grow: 1;
 }
 .songList>li{
   padding-left:10px; 
@@ -55,8 +57,13 @@ input{font: inherit;outline: none;background: #dddddd;}
   margin: 10px;
 }
 .btnUpload{
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
+
 /* main */
 main{padding-top: 10px;}
 main>form{
@@ -91,7 +98,7 @@ main>form input[type=text]{
   color:#000000;
   background: #dddddd;
 }
-main>form>h1{
+main>h1{
   font-size: 22px;
 }
 main>form>.row{
