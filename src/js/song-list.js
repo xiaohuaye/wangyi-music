@@ -4,7 +4,7 @@
     template:`
         <ul class="songList">
             <li>歌曲1</li>
-            <li class="active">歌曲2</li>
+            <li>歌曲2</li>
             <li>歌曲3</li>
             <li>歌曲4</li>
             <li>歌曲5</li>
@@ -17,6 +17,9 @@
     `,
     render(data){
       $(this.el).html(this.template)
+    },
+    clearActive(){
+      $(this.el).find('.active').removeClass('active')
     }
   }
   let model = {}
@@ -27,6 +30,9 @@
       this.view = view
       this.model = model
       this.view.render(this.model.data)
+      window.eventhub.on('upload',()=>{
+        this.view.clearActive()
+      })
     }
   }
   controller.init(view,model)

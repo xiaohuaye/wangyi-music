@@ -14,10 +14,13 @@
       this.view = view
       this.model = model
       this.view.render(this.model.data)
+      this.active()
       window.eventhub.on('upload' ,(data)=>{
-        console.log('newsong得到了data')
-        console.log(data)
+        this.active()
       })
+    },
+    active(){
+      $(this.view.el).addClass('active')
     }
   }
   controller.init(view,model)
