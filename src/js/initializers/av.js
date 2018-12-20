@@ -6,4 +6,6 @@
     appId: APP_ID,
     appKey: APP_KEY
   })
+
+  //创建数据库
 }
