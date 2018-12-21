@@ -76,7 +76,8 @@
       this.view.render(this.model.data);
       this.bindEvent();
       window.eventhub.on("upload", data => {
-        this.view.render(data);
+        this.model.data = data
+        this.view.render(this.model.data);
       });
     },
     bindEvent() {
@@ -88,8 +89,11 @@
           data[string] = this.view.$el.find(`input[name = "${string}"]`).val();
         });
         this.model.create(data).then(()=>{
-          this.view.render(this.model.data)
+          // this.view.render(this.model.data)
           this.view.reset()
+          let string = JSON.stringify(this.model.data)
+          let object = JSON.parse(string)
+          window.eventhub.emit('create',object)
         },(error)=>{console.log(error)})
       });
     }

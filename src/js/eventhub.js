@@ -1,6 +1,6 @@
 window.eventhub = {
   events: {},
-  // 订阅
+  //发布
   emit(eventName, data) {
     for (let key in this.events) {
       if (key === eventName) {
@@ -11,7 +11,7 @@ window.eventhub = {
       }
     }
   },
-  // 发布
+  //订阅
   on(eventName, fn) {
     if (this.events[eventName] === undefined) {
       this.events[eventName] = [];
