@@ -10,7 +10,7 @@
       $el.html(this.template)
       let {songs} = data
       let liList = songs.map((song)=>{ 
-        return  $('<li></li>').text(song.name)})
+        return  $('<li></li>').text(song.name).attr('data-song-id',song.id)})
       $el.find('ul').empty()
       liList.map((domLi)=>{
         $el.find('ul').append(domLi)
@@ -18,6 +18,10 @@
     },
     clearActive(){
       $(this.el).find('.active').removeClass('active')
+    },
+    activeItem(item){
+      let $li = $(item)
+      $li.addClass('active').siblings('.active').removeClass('active') 
     }
   }
   let model = {
@@ -39,6 +43,18 @@
       this.view = view
       this.model = model
       this.view.render(this.model.data)
+      this.bindEvent()
+      this.bindEventhub()
+      this.getAllSongs()
+    },
+    bindEvent(){
+      $(this.view.el).on('click','li',(e)=>{
+        this.view.activeItem(e.currentTarget)
+        let songId = e.currentTarget.getAttribute('data-song-id')
+        window.eventhub.emit('select',{id:songId})
+      })
+    },
+    bindEventhub(){
       window.eventhub.on('upload',()=>{
         this.view.clearActive()
       })
@@ -46,8 +62,9 @@
         this.model.data.songs.push(songData)
         this.view.render(this.model.data)
       })
-      this.model.find().then(()=>{
-        console.log(this.model.data)
+    },
+    getAllSongs(){
+      return this.model.find().then(()=>{
         this.view.render(this.model.data)
       })
     }

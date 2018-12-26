@@ -43,7 +43,7 @@ input{font: inherit;outline: none;background: #dddddd;}
   width: 100%;
   border-bottom: 1px solid #DEE1E6;
 }
-.songList>li.active{
+.active{
   background: yellowgreen;
 }
 .uploadArea{
