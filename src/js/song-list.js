@@ -11,7 +11,6 @@
       let {songs} = data
       let liList = songs.map((song)=>{ 
         return  $('<li></li>').text(song.name)})
-      console.log(liList)
       $el.find('ul').empty()
       liList.map((domLi)=>{
         $el.find('ul').append(domLi)
@@ -24,6 +23,15 @@
   let model = {
     data: {
       songs:[]
+    },
+    find(){
+      var query = new AV.Query('song')
+      return query.find().then((songs)=>{
+        this.data.songs = songs.map((song)=>{
+          return{id:song.id, ...song.attributes}
+        })
+        return this.data.songs
+      })
     }
   }
   let controller = {
@@ -36,6 +44,10 @@
       })
       window.eventhub.on('create',(songData)=>{
         this.model.data.songs.push(songData)
+        this.view.render(this.model.data)
+      })
+      this.model.find().then(()=>{
+        console.log(this.model.data)
         this.view.render(this.model.data)
       })
     }

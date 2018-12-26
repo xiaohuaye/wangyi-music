@@ -6,7 +6,7 @@ window.eventhub = {
       if (key === eventName) {
         let fnlist = this.events[key];
         fnlist.map(fn => {
-          fn(data);
+          return fn(data);
         });
       }
     }
