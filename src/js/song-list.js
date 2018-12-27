@@ -70,6 +70,14 @@
       window.eventhub.on('new',()=>{
         this.view.clearActive()
       })
+      window.eventhub.on('updata',(song)=>{
+        let songs = this.model.data.songs
+        for(let i=0; i<songs.length;i++){
+          if(songs[i] === song.id){
+            Object.assign( songs[i] , song)          
+          }
+        }
+      })
     },
     getAllSongs(){
       return this.model.find().then(()=>{
