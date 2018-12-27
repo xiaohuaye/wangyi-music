@@ -79,17 +79,17 @@
       this.model = model;
       this.view.render(this.model.data);
       this.bindEvent();
-      window.eventhub.on("upload", data => {
-        this.model.data = data
-        this.view.render(this.model.data);
-      });
       window.eventhub.on('select',data =>{
         this.model.data = data
         this.view.render(this.model.data)
       })
-      window.eventhub.on('new',()=>{
-        this.model.data = {
-          name:'',url:'',id:'',singer:''
+      window.eventhub.on('new',(data)=>{
+        if(this.model.data.id){
+          this.model.data = {
+            name:'',url:'',id:'',singer:''
+          }
+        }else{
+          Object.assign(this.model.data,data)
         }
         this.view.render(this.model.data)
       })

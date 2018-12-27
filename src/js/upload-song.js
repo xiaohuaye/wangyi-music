@@ -52,7 +52,7 @@
             var domain = up.getOption("domain");
             var response = JSON.parse(info.response);
             var sourceLink = domain + "/" + encodeURIComponent(response.key);
-            window.eventhub.emit('upload',{
+            window.eventhub.emit('new',{
               url: sourceLink,
               name: response.key
             })
