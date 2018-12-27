@@ -79,6 +79,11 @@
         this.model.data = data
         this.view.render(this.model.data);
       });
+      window.eventhub.on('select',data =>{
+        this.model.data = data
+        this.view.render(this.model.data)
+
+      })
     },
     bindEvent() {
       this.view.$el.on("submit", "form", e => {

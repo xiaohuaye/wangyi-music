@@ -19,12 +19,10 @@
         this.active()
       })
       window.eventhub.on('select',(data)=>{
-        console.log(data)
         this.deactive()
       })
     },
     active(){
-      console.log($(this.view.el))
       $(this.view.el).addClass('active')
     },
     deactive(){
