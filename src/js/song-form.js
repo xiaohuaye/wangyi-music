@@ -132,7 +132,6 @@
     bindEvent() {
       this.view.$el.on("submit", "form", e => {
         e.preventDefault();
-
         if (this.model.data.id) {
           this.updata();
         } else {
